@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # Created by https://www.gitignore.io/api/linux,android,intellij,crashlytics,espresso,git,gradle,java
 
@@ -15,6 +16,8 @@
 
 
 ### Android ###
+=======
+>>>>>>> 804739414e2f2c150fc6aeb1e5c753ac0d2fbc8f
 # Built application files
 *.apk
 *.ap_
@@ -55,6 +58,7 @@ captures/
 
 # Keystore files
 *.jks
+<<<<<<< HEAD
 
 ### Android Patch ###
 gen-external-apklibs
@@ -161,3 +165,5 @@ gradle-app.setting
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
+=======
+>>>>>>> 804739414e2f2c150fc6aeb1e5c753ac0d2fbc8f
