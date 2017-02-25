@@ -15,7 +15,6 @@
  */
 package xyz.gonzapico.domain.executor;
 
-import com.elconfidencial.domain.app.interactor.BaseUseCase;
 import java.util.concurrent.Executor;
 
 /**
