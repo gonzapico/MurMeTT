@@ -6,5 +6,5 @@ package com.gonzapico.murmett.player;
 
 public interface MurMePlayer {
 
-  void playAudio();
+  void playAudio(String src);
 }
