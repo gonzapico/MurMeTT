@@ -1,0 +1,5 @@
+
+xsquid:S1450"WRemove the "mContext" field and declare it as a local variable in the relevant methods.(»úÅ¾øÿÿÿÿ8Á½›Ş§+
+Dsquid:S1185"(Remove this method to simply inherit it.(¥Áâå8³Øğİ§+
+rsquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(ïãúÊùÿÿÿÿ
+¢squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¶¯¶Áùÿÿÿÿ8¶Ç—Ş§+
