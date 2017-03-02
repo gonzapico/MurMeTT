@@ -2,9 +2,10 @@ package xyz.gonzapico.domain.interactor;
 
 import javax.inject.Inject;
 import rx.Observable;
-import xyz.gonzapico.domain.repository.UsersRepository;
 import xyz.gonzapico.domain.executor.PostExecutionThread;
 import xyz.gonzapico.domain.executor.ThreadExecutor;
+import xyz.gonzapico.domain.model.RequestAPIModelDomain;
+import xyz.gonzapico.domain.repository.UsersDomainRepository;
 
 /**
  * Created by gfernandez on 25/02/17.
@@ -12,15 +13,20 @@ import xyz.gonzapico.domain.executor.ThreadExecutor;
 
 public class GetUsers extends BaseUseCase {
 
-  private final UsersRepository mRepository;
+  private final UsersDomainRepository mRepository;
+  private RequestAPIModelDomain requestParams;
 
-  @Inject public GetUsers(UsersRepository usersRepository, ThreadExecutor threadExecutor,
+  @Inject public GetUsers(UsersDomainRepository usersDomainRepository, ThreadExecutor threadExecutor,
       PostExecutionThread postExecutionThread) {
     super(threadExecutor, postExecutionThread);
-    this.mRepository = usersRepository;
+    this.mRepository = usersDomainRepository;
+  }
+
+  public void setParameters(RequestAPIModelDomain requestParameters) {
+    this.requestParams = requestParameters;
   }
 
   @Override public Observable buildUseCaseObservable() {
-    return this.mRepository.getUsers();
+    return this.mRepository.getUsers(this.requestParams);
   }
 }
