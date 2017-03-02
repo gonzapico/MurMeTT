@@ -9,4 +9,12 @@ import java.util.List;
 public interface ShowUsersView {
 
   void renderListOfUsers(List<UserModel> userModelList);
+
+  void showRecordView(UserModel userModel);
+
+  void showErrorMessage(String s);
+
+  void playPresentationAudio(String pathLastAudio);
+
+  void playLatestAudio(String pathLastAudio);
 }
