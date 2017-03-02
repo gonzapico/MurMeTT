@@ -1,20 +1,25 @@
 package xyz.gonzapico.data.di;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dagger.Module;
 import dagger.Provides;
+import java.io.IOException;
 import javax.inject.Singleton;
 import okhttp3.Cache;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import xyz.gonzapico.data.cloud.MurMeAPIService;
 
-import static okhttp3.logging.HttpLoggingInterceptor.Level.HEADERS;
+import static okhttp3.logging.HttpLoggingInterceptor.Level.BODY;
 
 /**
  * Created by gfernandez on 25/02/17.
@@ -24,6 +29,22 @@ import static okhttp3.logging.HttpLoggingInterceptor.Level.HEADERS;
 
   String mBaseUrl;
   Context context;
+  private final Interceptor REWRITE_CACHE_CONTROL_INTERCEPTOR = new Interceptor() {
+    @Override public Response intercept(Chain chain) throws IOException {
+      Response originalResponse = chain.proceed(chain.request());
+      if (isThereInternetConnection(CloudModule.this.context)) {
+        int maxAge = 60; // read from cache for 1 minute
+        return originalResponse.newBuilder()
+            .header("Cache-Control", "public, max-age=" + maxAge)
+            .build();
+      } else {
+        int maxStale = 60 * 60 * 24 * 14; // tolerate 2-weeks stale
+        return originalResponse.newBuilder()
+            .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
+            .build();
+      }
+    }
+  };
 
   public CloudModule(String baseUrl, Context context) {
     this.mBaseUrl = baseUrl;
@@ -32,7 +53,7 @@ import static okhttp3.logging.HttpLoggingInterceptor.Level.HEADERS;
 
   @Provides @Singleton HttpLoggingInterceptor provideHttpLoggingInterceptor() {
     HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
-    httpLoggingInterceptor.setLevel(HEADERS);
+    httpLoggingInterceptor.setLevel(BODY);
     return httpLoggingInterceptor;
   }
 
@@ -63,9 +84,25 @@ import static okhttp3.logging.HttpLoggingInterceptor.Level.HEADERS;
   @Provides @Singleton OkHttpClient.Builder provideOkHttpClient(Cache cache,
       HttpLoggingInterceptor loggingInterceptor) {
     OkHttpClient.Builder client = new OkHttpClient.Builder();
-
+    client.networkInterceptors().add(REWRITE_CACHE_CONTROL_INTERCEPTOR);
     client.addInterceptor(loggingInterceptor);
     client.cache(cache);
     return client;
+  }
+
+  /**
+   * Checks if the device has any active internet connection.
+   *
+   * @return true device with internet connection, otherwise false.
+   */
+  public boolean isThereInternetConnection(Context context) {
+    boolean isConnected;
+
+    ConnectivityManager connectivityManager =
+        (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+    isConnected = (networkInfo != null && networkInfo.isConnectedOrConnecting());
+
+    return isConnected;
   }
 }
