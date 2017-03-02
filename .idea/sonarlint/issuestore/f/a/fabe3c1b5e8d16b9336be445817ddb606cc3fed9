@@ -1,5 +1,0 @@
-
-¢squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(³ŸñŠøÿÿÿÿ8éù¿Ý§+
-¢squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ä’…Ðúÿÿÿÿ8ž…íÝ§+
-`squid:UnusedPrivateMethod"1Remove this unused private "setUpAdapter" method.(ä’…Ðúÿÿÿÿ8Ó‡ìÝ§+
-‚squid:S1450"aRemove the "showUsersPresenter" field and declare it as a local variable in the relevant methods.(ä®ÝÏûÿÿÿÿ8’ÐÑÝ§+

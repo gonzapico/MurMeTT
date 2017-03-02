@@ -4,7 +4,7 @@ import java.util.List;
 import retrofit2.Response;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
+import retrofit2.http.Query;
 import xyz.gonzapico.data.entity.UserEntity;
 
 /**
@@ -13,10 +13,10 @@ import xyz.gonzapico.data.entity.UserEntity;
 
 public interface MurMeAPIService {
 
-  @Headers({
-      "language:es_ES", "Content-Type:application/x-www-form-urlencoded"
-  }) @POST("/{config}/") rx.Observable<Response<List<UserEntity>>> users(
-      @Path(value = "keyAccess", encoded = true) String keyAccess,
-      @Path(value = "pushToken", encoded = true) String pushToken,
-      @Path(value = "idUser", encoded = true) String idUser);
+  @Headers("Content-Type: application/x-www-form-urlencoded")
+  @POST("/api/v1/Conversations/GetContacts") rx.Observable<Response<List<UserEntity>>> users(
+      @Query(value = "keyAccess", encoded = true) String keyAccess,
+      @Query(value = "pushToken", encoded = true) String pushToken,
+      @Query(value = "idUser", encoded = true) String idUser,
+      @Query(value = "language", encoded = true) String language);
 }
