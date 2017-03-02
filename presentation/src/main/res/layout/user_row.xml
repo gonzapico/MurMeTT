@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+>
+
+  <android.support.v7.widget.CardView
+      android:id="@+id/cvTopic"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+  >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp"
+    >
+
+      <ImageView
+          android:id="@+id/ivPlayPresentation"
+          android:layout_width="wrap_content" android:layout_height="wrap_content"
+          android:contentDescription="@string/cd_presentation"
+          android:src="@drawable/ic_play_circle_filled"/>
+
+      <TextView
+          android:id="@+id/tvUserName"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:gravity="center"
+          android:lines="2"
+          android:text="Paco de lUcia"
+          android:textSize="30sp"
+      />
+
+
+      <ImageView
+          android:id="@+id/ivPlayLatestAudio"
+          android:layout_width="wrap_content" android:layout_height="wrap_content"
+          android:contentDescription="@string/cd_latest_audio"
+          android:src="@drawable/ic_latest_audio"/>
+
+      <ImageView
+          android:id="@+id/ivRecordAudio"
+          android:layout_width="wrap_content" android:layout_height="wrap_content"
+          android:contentDescription="@string/cd_record_audio"
+          android:src="@drawable/ic_record"/>
+
+
+    </LinearLayout>
+
+  </android.support.v7.widget.CardView>
+
+</LinearLayout>
