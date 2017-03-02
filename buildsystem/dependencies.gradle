@@ -30,7 +30,9 @@ ext {
   assertJVersion = '1.7.1'
   mockitoVersion = '1.10.19'
 
-  presentationDependencies = []
+  presentationDependencies = [daggerCompiler     : "com.google.dagger:dagger-compiler:${daggerVersion}",
+                              dagger             : "com.google.dagger:dagger:${daggerVersion}",
+                              javaxGlassfish     : "org.glassfish:javax.annotation:${javaxGlassfish}"]
 
   presentationTestDependencies = []
 
