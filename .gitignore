@@ -76,6 +76,7 @@ gen-external-apklibs
 .idea/jsLibraryMappings.xml
 .idea/modules.xml
 .idea/misc.xml
+.idea/sonarlint
 
 # Sensitive or high-churn files:
 .idea/dataSources.ids
