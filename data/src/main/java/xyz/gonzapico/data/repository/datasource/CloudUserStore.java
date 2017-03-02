@@ -11,6 +11,7 @@ import xyz.gonzapico.data.cloud.MurMeAPIService;
 import xyz.gonzapico.data.di.CloudModule;
 import xyz.gonzapico.data.di.DaggerCloudComponent;
 import xyz.gonzapico.data.entity.UserEntity;
+import xyz.gonzapico.domain.model.RequestAPIModelDomain;
 
 /**
  * Created by gfernandez on 25/02/17.
@@ -41,7 +42,9 @@ public class CloudUserStore implements UserDataStore {
         .cloudModule(new CloudModule(Config.API_URL_BASE, this.context)).build().inject(this);
   }
 
-  @Override public Observable<Response<List<UserEntity>>> users() {
-    return restApi.users("", "", "");
+  @Override
+  public Observable<Response<List<UserEntity>>> users(RequestAPIModelDomain requestAPIModelDomain) {
+    return restApi.users(requestAPIModelDomain.getKeyAccess(), requestAPIModelDomain.getPushToken(),
+        requestAPIModelDomain.getIdUser(), requestAPIModelDomain.getLanguage());
   }
 }
