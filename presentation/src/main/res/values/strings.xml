@@ -1,4 +1,12 @@
 <resources>
   <string name="app_name">MurMeTT</string>
-  <string name="title_activity_home">HomeActivity</string>
+
+  <string name="cd_presentation">Presentation of the user</string>
+  <string name="cd_latest_audio">Latest audio of the user</string>
+  <string name="cd_record_audio">Record audio</string>
+  
+  <string name="exception_message_no_connection">No hay Internet en estos momentos. Intentalo de nuevo más tarde.</string>
+  <string name="exception_message_generic">Ha ocurrido un error inesperado. Intentalo de nuevo más tarde</string>
+  <string name="exception_no_audio">No hay audios para este usuario</string>
+  <string name="exception_message_user_not_found">Usuario no encontrado</string>
 </resources>

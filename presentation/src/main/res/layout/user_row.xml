@@ -11,58 +11,47 @@
       android:layout_height="wrap_content"
   >
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp"
     >
 
       <ImageView
-          android:id="@+id/ivPlay"
+          android:id="@+id/ivPlayPresentation"
+          android:layout_width="wrap_content" android:layout_height="wrap_content"
+          android:contentDescription="@string/cd_presentation"
+          android:src="@drawable/ic_play_circle_filled"/>
+
+      <TextView
+          android:id="@+id/tvUserName"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_alignParentLeft="true"
-          android:layout_alignParentTop="true"
-          android:layout_marginRight="16dp"
-          android:src="@drawable/ic_play_circle_filled"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:gravity="center"
+          android:lines="2"
+          android:text="Paco de lUcia"
+          android:textSize="30sp"
       />
 
-      <LinearLayout
-          android:id="@+id/llUsername"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_toRightOf="@id/ivPlay"
-          android:orientation="vertical">
-        <TextView
-            android:id="@+id/tvUserName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Paco de lUcia"
-            android:textSize="30sp"
-        />
 
-        <LinearLayout android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+      <ImageView
+          android:id="@+id/ivPlayLatestAudio"
+          android:layout_width="wrap_content" android:layout_height="wrap_content"
+          android:contentDescription="@string/cd_latest_audio"
+          android:src="@drawable/ic_latest_audio"/>
 
-          <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:src="@drawable/ic_play_circle_filled"/>
-          <TextView
-              android:id="@+id/tvUserTime"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="12:04"
-          />
-
-        </LinearLayout>
-
-      </LinearLayout>
-
-      <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
-          android:layout_toRightOf="@id/llUsername" android:src="@drawable/ic_launcher_murme"/>
+      <ImageView
+          android:id="@+id/ivRecordAudio"
+          android:layout_width="wrap_content" android:layout_height="wrap_content"
+          android:contentDescription="@string/cd_record_audio"
+          android:src="@drawable/ic_record"/>
 
 
-    </RelativeLayout>
+    </LinearLayout>
 
   </android.support.v7.widget.CardView>
 
