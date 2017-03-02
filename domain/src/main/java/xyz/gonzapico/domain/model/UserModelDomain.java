@@ -5,4 +5,14 @@ package xyz.gonzapico.domain.model;
  */
 
 public class UserModelDomain {
+
+  private String name = "";
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
 }
