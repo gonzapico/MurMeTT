@@ -1,18 +1,18 @@
 package com.gonzapico.murmett.di.components;
 
+import com.gonzapico.murmett.ShowUsersFragment;
+import com.gonzapico.murmett.di.PerActivity;
+import com.gonzapico.murmett.di.modules.ActivityModule;
+import com.gonzapico.murmett.di.modules.UserModule;
 import dagger.Component;
-import xyz.gonzapico.a24itt.ShowPopularMoviesFragment;
-import xyz.gonzapico.a24itt.WatchTrailerFragment;
-import xyz.gonzapico.a24itt.di.PerActivity;
-import xyz.gonzapico.a24itt.di.modules.ActivityModule;
-import xyz.gonzapico.a24itt.di.modules.MovieModule;
 
 /**
- * Created by gfernandez on 31/10/16.
+ * A scope {@link PerActivity}
+ * component.
+ * Injects user specific Fragments.
  */
 @PerActivity @Component(dependencies = ApplicationComponent.class, modules = {
-    ActivityModule.class, MovieModule.class
+    ActivityModule.class, UserModule.class
 }) public interface UserComponent extends ActivityComponent {
-  void inject(ShowPopularMoviesFragment showPopularMoviesFragment);
-  void inject(WatchTrailerFragment watchTrailerFragment);
+  void inject(ShowUsersFragment showUsersFragment);
 }

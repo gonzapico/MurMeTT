@@ -1,16 +1,15 @@
 package com.gonzapico.murmett.di.modules;
 
+import com.gonzapico.murmett.di.PerActivity;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Named;
-import xyz.gonzapico.a24itt.di.PerActivity;
-import xyz.gonzapico.interactor.BaseUseCase;
-import xyz.gonzapico.interactor.GetGenres;
-import xyz.gonzapico.interactor.GetPopularMovies;
-import xyz.gonzapico.interactor.GetTrailers;
+import xyz.gonzapico.domain.interactor.BaseUseCase;
+import xyz.gonzapico.domain.interactor.GetUsers;
 
 /**
- * Created by gfernandez on 31/10/16.
+ * /**
+ * Dagger module that provides user related collaborators.
  */
 @Module public class UserModule {
 
@@ -18,17 +17,8 @@ import xyz.gonzapico.interactor.GetTrailers;
 
   }
 
-  @Provides @PerActivity @Named("popularMovies") BaseUseCase provideGetPopularMoviesUseCase(
-      GetPopularMovies getPopularMovies) {
-    return getPopularMovies;
-  }
-
-  @Provides @PerActivity @Named("genres") BaseUseCase provideGetGenresUseCase(GetGenres getGenres) {
-    return getGenres;
-  }
-
-  @Provides @PerActivity @Named("trailers") BaseUseCase provideGetTrailersUseCase(
-      GetTrailers getTrailers) {
-    return getTrailers;
+  @Provides @PerActivity @Named("users") BaseUseCase provideGetUsersUseCase(
+      GetUsers getUsers) {
+    return getUsers;
   }
 }
