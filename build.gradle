@@ -16,7 +16,7 @@ allprojects {
   ext {
     androidApplicationId = 'xyz.gonzapico.murmett'
     androidVersionCode = 1
-    androidVersionName = "0.20170226"
+    androidVersionName = "1.0_20170303"
 
     testApplicationId = 'xyz.gonzapico.murmett.test'
 
