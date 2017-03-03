@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import com.gonzapico.murmett.di.HasComponent;
 import com.gonzapico.murmett.di.components.ApplicationComponent;
 import com.gonzapico.murmett.di.components.DaggerUserComponent;
@@ -21,13 +23,13 @@ public abstract class BaseMMActivity extends AppCompatActivity
     implements HasComponent<UserComponent> {
   //@Inject Navigator navigator;
   UserComponent mUserComponent;
-  Toolbar toolbar;
+  @BindView(R.id.toolbar) Toolbar toolbar;
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(getLayoutResource());
+    ButterKnife.bind(this);
 
-    toolbar = (Toolbar) findViewById(R.id.toolbar);
     if (toolbar != null) {
       setSupportActionBar(toolbar);
 
@@ -58,7 +60,15 @@ public abstract class BaseMMActivity extends AppCompatActivity
   protected void addFragment(int containerViewId, Fragment fragment) {
     FragmentTransaction fragmentTransaction = this.getFragmentManager().beginTransaction();
     fragmentTransaction.add(containerViewId, fragment);
+    fragmentTransaction.addToBackStack(null);
     fragmentTransaction.commit();
+  }
+
+  /***
+   * Get out a {@link Fragment} from the back stack.
+   */
+  protected void popFragment() {
+    if (getFragmentManager().getBackStackEntryCount() > 1) this.getFragmentManager().popBackStack();
   }
 
   /**
