@@ -5,7 +5,6 @@ import android.os.Environment;
 import android.text.TextUtils;
 import com.gonzapico.murmett.exception.AudioNotFoundException;
 import com.gonzapico.murmett.exception.ErrorMessageFactory;
-import com.gonzapico.murmett.navigation.Navigator;
 import com.gonzapico.murmett.showUsers.mapper.DomainUserMapper;
 import java.io.File;
 import java.util.ArrayList;
