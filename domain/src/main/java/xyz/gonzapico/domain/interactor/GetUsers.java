@@ -14,7 +14,6 @@ import xyz.gonzapico.domain.repository.UsersDomainRepository;
 public class GetUsers extends BaseUseCase {
 
   private final UsersDomainRepository mRepository;
-  private RequestAPIModelDomain requestParams;
 
   @Inject public GetUsers(UsersDomainRepository usersDomainRepository, ThreadExecutor threadExecutor,
       PostExecutionThread postExecutionThread) {
@@ -22,11 +21,7 @@ public class GetUsers extends BaseUseCase {
     this.mRepository = usersDomainRepository;
   }
 
-  public void setParameters(RequestAPIModelDomain requestParameters) {
-    this.requestParams = requestParameters;
-  }
-
   @Override public Observable buildUseCaseObservable() {
-    return this.mRepository.getUsers(this.requestParams);
+    return this.mRepository.getUsers();
   }
 }

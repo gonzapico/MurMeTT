@@ -40,7 +40,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UserViewHolder> {
 
   @Override public void onBindViewHolder(UserViewHolder holder, int position) {
     final UserModel currentUser = listOfUsers.get(position);
-    tvUsername.setText(currentUser.getName());
+    tvUsername.setText(currentUser.getAlias());
     ivPlayLatestAudio.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         userClickListener.onLatestAudioClicked(currentUser);

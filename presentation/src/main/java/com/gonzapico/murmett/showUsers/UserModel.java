@@ -6,16 +6,17 @@ package com.gonzapico.murmett.showUsers;
 
 public class UserModel {
 
-  private String name = "";
+  private String id = "";
+  private String alias = "";
   private String urlPresentation = "";
   private String pathLastAudio = "";
 
-  public String getName() {
-    return name;
+  public String getAlias() {
+    return alias;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setAlias(String alias) {
+    this.alias = alias;
   }
 
   public String getUrlPresentation() {
@@ -32,5 +33,13 @@ public class UserModel {
 
   public void setPathLastAudio(String pathLastAudio) {
     this.pathLastAudio = pathLastAudio;
+  }
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
   }
 }

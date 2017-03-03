@@ -11,5 +11,5 @@ import xyz.gonzapico.domain.model.UserModelDomain;
 
 public interface UsersDomainRepository {
 
-  Observable<List<UserModelDomain>> getUsers(RequestAPIModelDomain requestAPIModelDomain);
+  Observable<List<UserModelDomain>> getUsers();
 }

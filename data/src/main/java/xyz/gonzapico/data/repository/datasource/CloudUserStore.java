@@ -10,6 +10,7 @@ import xyz.gonzapico.data.Config;
 import xyz.gonzapico.data.cloud.MurMeAPIService;
 import xyz.gonzapico.data.di.CloudModule;
 import xyz.gonzapico.data.di.DaggerCloudComponent;
+import xyz.gonzapico.data.entity.ResponseAPIUsers;
 import xyz.gonzapico.data.entity.UserEntity;
 import xyz.gonzapico.domain.model.RequestAPIModelDomain;
 
@@ -43,8 +44,7 @@ public class CloudUserStore implements UserDataStore {
   }
 
   @Override
-  public Observable<Response<List<UserEntity>>> users(RequestAPIModelDomain requestAPIModelDomain) {
-    return restApi.users(requestAPIModelDomain.getKeyAccess(), requestAPIModelDomain.getPushToken(),
-        requestAPIModelDomain.getIdUser(), requestAPIModelDomain.getLanguage());
+  public Observable<Response<ResponseAPIUsers>> users() {
+    return restApi.users();
   }
 }

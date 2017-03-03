@@ -7,6 +7,7 @@ import com.gonzapico.murmett.exception.AudioNotFoundException;
 import com.gonzapico.murmett.exception.ErrorMessageFactory;
 import com.gonzapico.murmett.navigation.Navigator;
 import com.gonzapico.murmett.showUsers.mapper.DomainUserMapper;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -14,7 +15,6 @@ import javax.inject.Named;
 import xyz.gonzapico.domain.exception.DefaultErrorBundle;
 import xyz.gonzapico.domain.interactor.BaseUseCase;
 import xyz.gonzapico.domain.interactor.DefaultSubscriber;
-import xyz.gonzapico.domain.interactor.GetUsers;
 import xyz.gonzapico.domain.model.UserModelDomain;
 
 /**
@@ -36,10 +36,6 @@ public class ShowUsersPresenter {
   }
 
   public void getUsers() {
-    ((GetUsers) this.getUsersUseCase).setParameters(
-        domainUserMapper.getParamsAPIModel("M_rM3Q", "es_ES",
-            "e2FDw4A_OyQ:APA91bERDeEBdys28VminIdDslu7as1lOHS_8kSoQgtXSyCxu6AGWMj_cTFuTu74O2e7pE6Ds_Jb7rlaBo3z0v1Eyj_d2N2WjZTZ8eSkCHKvYuIYEVDubL7Yc86otoy0TpV5YYThQ8v2",
-            "application/x-www-form-urlencoded", "3f797096-8ddd-4aaa-8135-66f652c8a8b2"));
     this.getUsersUseCase.execute(new GetUsersSuscriber());
   }
 
@@ -60,7 +56,7 @@ public class ShowUsersPresenter {
     List<UserModel> fakeList = new ArrayList<>();
 
     UserModel userModelOne = new UserModel();
-    userModelOne.setName("paco");
+    userModelOne.setAlias("paco");
     fakeList.add(userModelOne);
 
     return fakeList;
@@ -68,7 +64,7 @@ public class ShowUsersPresenter {
 
   public void onRecordAudioClicked(UserModel userModel, Context context) {
     Navigator navigator = new Navigator();
-    navigator.navigateToRecordView(context, userModel.getName());
+    navigator.navigateToRecordView(context, userModel.getAlias());
     //mShowUsersView.showRecordView(userModel);
   }
 
@@ -77,20 +73,29 @@ public class ShowUsersPresenter {
       mShowUsersView.showErrorMessage(
           ErrorMessageFactory.create(context, new AudioNotFoundException()));
     } else {
-      mShowUsersView.playPresentationAudio(userModel.getPathLastAudio());
+      mShowUsersView.playPresentationAudio(userModel.getUrlPresentation());
     }
   }
 
   public void onLatestAudioClicked(Context context, UserModel userModel) {
     try {
       String path = context.getExternalFilesDir(Environment.DIRECTORY_MUSIC).getAbsolutePath();
-      path = path + "/mm_" + userModel.getName() + ".3gp";
+      path = path + "/mm_" + userModel.getId() + ".3gp";
 
-      mShowUsersView.playLatestAudio(path);
+      if (doesFileExist(path)) {
+        mShowUsersView.playLatestAudio(path);
+      } else {
+        throw new Exception();
+      }
     } catch (Exception e) {
       mShowUsersView.showErrorMessage(
           ErrorMessageFactory.create(context, new AudioNotFoundException()));
     }
+  }
+
+  private boolean doesFileExist(String path) {
+    File file = new File(path);
+    return file.exists();
   }
 
   private final class GetUsersSuscriber extends DefaultSubscriber<List<UserModelDomain>> {

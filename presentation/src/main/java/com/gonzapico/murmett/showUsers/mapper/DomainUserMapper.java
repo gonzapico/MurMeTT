@@ -23,6 +23,9 @@ import xyz.gonzapico.domain.model.UserModelDomain;
 
     for (UserModelDomain userModelDomain : userDomainEntityList) {
       UserModel userModel = new UserModel();
+      userModel.setId(userModelDomain.getIdUser());
+      userModel.setAlias(userModelDomain.getAlias());
+      userModel.setUrlPresentation(userModelDomain.getPresentation());
       userModelListTransformation.add(userModel);
     }
 

@@ -29,13 +29,8 @@ import xyz.gonzapico.domain.repository.UsersDomainRepository;
   }
 
   @Override
-  public Observable<List<UserModelDomain>> getUsers(RequestAPIModelDomain requestAPIModelDomain) {
+  public Observable<List<UserModelDomain>> getUsers() {
     final UserDataStore userDataStore = this.userDataStoreFactory.createCloudDataStore();
-    return userDataStore.users(requestAPIModelDomain)
-        .map(new Func1<Response<List<UserEntity>>, List<UserModelDomain>>() {
-          @Override public List<UserModelDomain> call(Response<List<UserEntity>> listResponse) {
-            return userMapper.transformToListOfUsers(listResponse);
-          }
-        });
+    return userDataStore.users().map(this.userMapper::transformToListOfUsers);
   }
 }
