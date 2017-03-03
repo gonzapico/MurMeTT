@@ -9,4 +9,6 @@
   <string name="exception_message_generic">Ha ocurrido un error inesperado. Intentalo de nuevo más tarde</string>
   <string name="exception_no_audio">No hay audios para este usuario</string>
   <string name="exception_message_user_not_found">Usuario no encontrado</string>
+
+  <string name="timer">%1$s:%2$s</string>
 </resources>
