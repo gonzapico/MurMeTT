@@ -25,15 +25,13 @@ public class RecordFragment extends BaseMMFragment
   RecordAudioPresenter recordAudioPresenter;
   @BindView(R.id.tvTimer) TextView tvTimer;
   @BindView(R.id.ivRecordAudio) ImageView ivRecordAudio;
-  private boolean isSpeakButtonLongPressed = false;
+  private boolean isRecordButtonLongPressed = false;
 
   private View.OnLongClickListener speakHoldListener = new View.OnLongClickListener() {
 
     @Override public boolean onLongClick(View pView) {
       // Do something when your hold starts here.
-      isSpeakButtonLongPressed = true;
-      Log.d("test",
-          "test ->" + isSpeakButtonLongPressed + " " + pView.getX() + " -- " + pView.getY());
+      isRecordButtonLongPressed = true;
       return true;
     }
   };
@@ -44,10 +42,9 @@ public class RecordFragment extends BaseMMFragment
       pView.onTouchEvent(pEvent);
       // We're only interested in when the button is released.
       if (pEvent.getAction() == MotionEvent.ACTION_UP) {
-        // We're only interested in anything if our speak button is currently pressed.
-        if (isSpeakButtonLongPressed) {
-          // Do something when the button is released.
-          isSpeakButtonLongPressed = false;
+        // We're only interested in anything if our record button is currently pressed.
+        if (isRecordButtonLongPressed) {
+          isRecordButtonLongPressed = false;
           int[] posXY = new int[2];
           ivRecordAudio.getLocationOnScreen(posXY);
           int x = posXY[0];
@@ -57,8 +54,8 @@ public class RecordFragment extends BaseMMFragment
           Point size = new Point();
           display.getSize(size);
           int width = size.x;
-          int height = size.y;
-          Log.d("test", width + "test ->" + isSpeakButtonLongPressed + (x - pEvent.getX()) + " y " + (y
+          Log.d("test", width + "test ->" + isRecordButtonLongPressed
+              + (x - pEvent.getX()) + " y " + (y
               - pEvent.getY()));
           if ((x - pEvent.getX()) > width) hideView();
         }
