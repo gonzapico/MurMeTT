@@ -1,11 +1,11 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply from: 'buildsystem/dependencies.gradle'
 
 buildscript {
   repositories {
     jcenter()
   }
   dependencies {
-    classpath 'com.android.tools.build:gradle:2.2.3'
+    classpath 'com.android.tools.build:gradle:2.3.0'
 
     // NOTE: Do not place your application dependencies here; they belong
     // in the individual module build.gradle files
@@ -13,11 +13,23 @@ buildscript {
 }
 
 allprojects {
-  repositories {
-    jcenter()
+  ext {
+    androidApplicationId = 'xyz.gonzapico.murmett'
+    androidVersionCode = 1
+    androidVersionName = "1.0_20170303"
+
+    testApplicationId = 'xyz.gonzapico.murmett.test'
+
+    testInstrumentationRunner = 'android.support.test.runner.AndroidJUnitRunner'
   }
 }
 
 task clean(type: Delete) {
   delete rootProject.buildDir
 }
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '2.2.1'
+}
+
+
