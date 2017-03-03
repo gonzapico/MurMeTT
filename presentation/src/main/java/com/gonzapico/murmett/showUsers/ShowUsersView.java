@@ -17,4 +17,6 @@ public interface ShowUsersView {
   void playPresentationAudio(String pathLastAudio);
 
   void playLatestAudio(String pathLastAudio);
+
+  void stopAudio();
 }

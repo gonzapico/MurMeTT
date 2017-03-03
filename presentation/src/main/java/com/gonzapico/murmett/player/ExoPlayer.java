@@ -72,4 +72,8 @@ import javax.inject.Singleton;
   public SimpleExoPlayer getPlayer() {
     return mPlayer;
   }
+
+  @Override public void release() {
+    if (mPlayer != null) mPlayer.release();
+  }
 }
