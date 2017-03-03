@@ -107,6 +107,12 @@ public class ShowUsersFragment extends BaseMMFragment implements ShowUsersView {
     rvUsers.setAdapter(usersAdapter);
   }
 
+  @Override public void stopAudio() {
+    if (this.userListListener != null) {
+      this.userListListener.onStopAudio();
+    }
+  }
+
   @Override public void renderListOfUsers(List<UserModel> userModelList) {
     setUpAdapter(userModelList);
   }
@@ -139,5 +145,7 @@ public class ShowUsersFragment extends BaseMMFragment implements ShowUsersView {
     void onLatestAudioClicked(final String audioSrc);
 
     void onRecordAudio(final UserModel userModel);
+
+    void onStopAudio();
   }
 }
