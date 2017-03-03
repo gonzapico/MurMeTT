@@ -63,8 +63,8 @@ public class ShowUsersPresenter {
   }
 
   public void onRecordAudioClicked(UserModel userModel, Context context) {
-    Navigator navigator = new Navigator();
-    navigator.navigateToRecordView(context, userModel.getAlias());
+    mShowUsersView.stopAudio();
+    mShowUsersView.showRecordView(userModel);
     //mShowUsersView.showRecordView(userModel);
   }
 
