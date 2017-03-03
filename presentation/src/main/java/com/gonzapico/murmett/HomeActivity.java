@@ -25,16 +25,23 @@ public class HomeActivity extends BaseMMActivity implements ShowUsersFragment.Us
   }
 
   @Override public void onPresentationAudioClicked(String audioUrl) {
-
+    Log.d("MURME", "onLatestAudioClicked -> " + audioUrl);
+    player = new ExoPlayer(this);
+    player.playAudio(audioUrl);
   }
 
   @Override public void onLatestAudioClicked(String audioSrc) {
-    Log.d("MURME", "onLatestAudioClicked -> " +  audioSrc);
+    Log.d("MURME", "onLatestAudioClicked -> " + audioSrc);
     player = new ExoPlayer(this);
     player.playAudio(audioSrc);
   }
 
   @Override public void onRecordAudio(UserModel userModel) {
 
+  }
+
+  @Override protected void onDestroy() {
+    super.onDestroy();
+    player.getPlayer().release();
   }
 }
